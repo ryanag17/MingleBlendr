@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MingleBlendr Inbox</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #fefbec; /* Text color */
+      background-color: #848fa5; /* Background color */
+    }
+
+    header {
+        background-color: #2c363f;
+        color: #fefbec;
+        text-align: center;
+        padding: 20px 0;
+    }
+
+    header nav {
+        display: flex;
+        justify-content: center;
+    }
+
+    header nav a {
+        font-weight: bold;
+        font-size: 18px;
+        text-decoration: none;
+        color: #fefbec;
+        margin: 0 10px; /* Add spacing between links */
+    }
+
+    header nav a[href="#events"] {
+        text-decoration: underline;
+        text-decoration-color: red;
+    }
+
+    #logo {
+        max-width: 150px; /* Set maximum width */
+        height: auto; /* Maintain aspect ratio */
+    }
+
+    #inbox-container {
+      margin: 20px;
+      background-color: #848fa5; /* Main content background color */
+      border-radius: 10px;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    #group-actions {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    button {
+      background-color: #4d94ff;
+      color: #fff;
+      padding: 8px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+
+    button:hover {
+      background-color: #2666b2;
+    }
+
+    #conversation-list-container {
+      max-width: 300px;
+      overflow-y: auto;
+      display: inline-block;
+      vertical-align: top;
+      background-color: #e6e6e6;
+      border-radius: 10px;
+    }
+
+    #conversation-list {
+      padding: 10px;
+    }
+
+    #conversation-list a {
+      display: block;
+      padding: 10px;
+      text-decoration: none;
+      color: #333;
+      border-bottom: 1px solid #ddd;
+      transition: background-color 0.3s;
+    }
+
+    #conversation-list a:hover {
+      background-color: #d9d9d9;
+    }
+
+    .active-chat {
+      background-color: #b3b3b3;
+    }
+
+    #message-container {
+      display: inline-block;
+      vertical-align: top;
+      width: calc(100% - 320px);
+      padding: 20px;
+    }
+
+    .message-box {
+      border: 1px solid #ddd;
+      padding: 10px;
+      margin-bottom: 10px;
+      background-color: #fff;
+      border-radius: 5px;
+      min-height: 200px;
+      overflow-y: auto;
+      color: #000;
+    }
+
+    #message-input {
+      width: calc(100% - 22px);
+      padding: 10px;
+      margin: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+    
+    footer {
+      background-color: #2c363f;
+      color: #fefbec;
+      text-align: center;
+      padding: 10px;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+    <header>
+        <a href="home.html">
+            <img id="logo" src="mingleblendr logo vers2.png" alt="MingleBlendr Logo">
+        </a>
+        <nav>
+            <a href="Homepage_MingleBlendr.html">Home</a>
+            <a href="Profilepage_MingleBlendr.html">Profile</a>
+            <a href="Grouppage_MingleBlendr.html">Groups</a>
+            <a href="Inboxpage_MingleBlendr.html">Inbox</a>
+            <a href="Eventspage_MingleBlendr.html">Events</a>
+            <a href="FAQpage_MingleBlendr.html">FAQ</a>
+        </nav>
+    </header>
+    
+      <div id="inbox-container">
+        <div id="group-actions">
+          <button onclick="createGroup()">Create Group</button>
+          <button onclick="deleteGroup()">Delete Group</button>
+          <button onclick="changeGroupName()">Change Group Name</button>
+        </div>
+    
+        <div id="conversation-list-container">
+          <div id="conversation-list">
+            <a href="#" onclick="switchChat('user1')" id="chat-user1">User 1</a>
+            <a href="#" onclick="switchChat('user2')" id="chat-user2">User 2</a>
+            <a href="#" onclick="switchChat('group1')" id="chat-group1">Group 1</a>
+            <a href="#" onclick="switchChat('group2')" id="chat-group2">Group 2</a>
+          </div>
+        </div>
+    
+        <div id="message-container">
+          <div id="message-box-user1" class="message-box">
+            <!-- User 1 Messages -->
+          </div>
+    
+          <div id="message-box-user2" class="message-box" style="display: none;">
+            <!-- User 2 Messages -->
+          </div>
+    
+          <div id="message-box-group1" class="message-box" style="display: none;">
+            <!-- Group 1 Messages -->
+          </div>
+    
+          <div id="message-box-group2" class="message-box" style="display: none;">
+            <!-- Group 2 Messages -->
+          </div>
+    
+          <textarea id="message-input" placeholder="Type your message..." onkeydown="handleEnterKey(event)"></textarea>
+          <button onclick="sendMessage()">Send</button>
+        </div>
+      </div>
+
+      <footer>
+        &copy; 2023 MingleBlendr | Contact: contact@mingleblendr.com
+      </footer>
+    
+      <script>
+        function createGroup() {
+          alert("Group created!");
+        }
+    
+        function deleteGroup() {
+          alert("Group deleted!");
+        }
+    
+        function changeGroupName() {
+          alert("Group name changed!");
+        }
+    
+        function sendMessage() {
+          const messageInput = document.getElementById('message-input');
+          const currentChat = getCurrentChatId();
+          const messageBox = document.getElementById(`message-box-${currentChat}`);
+          const messageText = messageInput.value;
+    
+          if (messageText.trim() !== '') {
+            messageBox.innerHTML += `<p><strong>You:</strong> ${messageText}</p>`;
+            messageInput.value = '';
+          }
+        }
+    
+        function switchChat(chatId) {
+          const allMessageBoxes = document.querySelectorAll('.message-box');
+          allMessageBoxes.forEach(box => {
+            box.style.display = 'none';
+          });
+    
+          const currentMessageBox = document.getElementById(`message-box-${chatId}`);
+          currentMessageBox.style.display = 'block';
+    
+          // Highlight the active chat in the conversation list
+          const allChatLinks = document.querySelectorAll('#conversation-list a');
+          allChatLinks.forEach(link => {
+            link.classList.remove('active-chat');
+          });
+    
+          const currentChatLink = document.getElementById(`chat-${chatId}`);
+          currentChatLink.classList.add('active-chat');
+        }
+    
+        function getCurrentChatId() {
+          // Logic to determine the current chat ID based on user interaction
+          // For simplicity, let's assume a variable is set elsewhere to store the current chat ID
+          return 'user1'; // Replace with your actual logic to get the current chat ID
+        }
+    
+        function handleEnterKey(event) {
+          if (event.key === 'Enter') {
+            event.preventDefault();
+            sendMessage();
+          }
+        }
+      </script>
+    
+    </body>
+    </html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HomePage</title>
+    <link rel="stylesheet" href="css/960_12_col.css" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #fefbec; /* Text color */
+            background-color: #848fa5; /* Background color */
+            margin: 0; /* Remove default body margin */
+        }
+
+        header {
+            background-color: #2c363f; /* Header and footer background color */
+            color: #fefbec; /* Text color for header and footer */
+            text-align: center; /* Center align text */
+            padding: 20px 0; /* Add padding top and bottom */
+        }
+
+        header nav {
+            display: flex;
+            justify-content: center; /* Center align navigation links */
+        }
+
+        header nav a {
+            font-weight: bold;
+            font-size: 18px;
+            text-decoration: none;
+            color: #fefbec;
+            margin: 0 10px; /* Add spacing between links */
+        }
+
+        header nav a[href="#events"] {
+            text-decoration: underline;
+            text-decoration-color: red;
+        }
+
+        #logo {
+            max-width: 150px; /* Set maximum width */
+            height: auto; /* Maintain aspect ratio */
+        }
+
+        .container_12 {
+            width: 960px;
+            margin: 0 auto;
+        }
+
+        #nav ul {
+            padding: 0;
+            margin: 0;
+            list-style-type: none;
+        }
+
+        #nav li {
+            display: inline;
+            list-style-type: none;
+        }
+
+        #nav li a {
+            display: inline-block;
+            color: blue;
+            text-align: center;
+            padding: 12px 16px;
+            color: white;
+            list-style-type: none;
+            text-decoration: none;
+        }
+
+        #nav ul li a:hover {
+            background-color: #555;
+            color: white;
+        }
+
+        .active {
+            background-color: #04AA6D;
+            color: white;
+        }
+
+        a {
+            color: #b5c1ad;
+            text-decoration: none;
+        }
+
+        .bg {
+            position: absolute;
+            z-index: -1;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: url(images/water-swirl.gif) center center;
+            opacity: .6;
+            width: 100%;
+            height: 100%;
+        }
+
+        .wrapper {
+            width: 100%;
+            margin: 100px auto;
+            opacity: 1;
+        }
+
+        .mainbody {
+            height: 460px;
+        }
+
+        .interests button {
+            background-color: gold;
+            border: 2px black;
+            border-radius: 25px;
+            color: black;
+            padding: 25px 25px;
+            width: 40%;
+            display: block;
+            margin: 25px;
+        }
+
+        .blender {
+            margin: 70px auto;
+            position: relative;
+            top: 0;
+            left: 0;
+        }
+
+        .imageblender {
+            position: relative;
+            top: 0;
+            left: 0;
+        }
+
+        .imageface {
+            position: absolute;
+            top: 80px;
+            left: 120px;
+        }
+
+        .RegisterLogin {
+            text-align: center;
+        }
+
+        .RegisterLogin button {
+            background-color: black;
+            color: antiquewhite;
+            padding: 10px 25px;
+        }
+
+        .footer {
+            background-color: #2c363f;
+            color: #fefbec;
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="home.html">
+          <img id="logo" src="mingleblendr logo vers2.png" alt="MingleBlendr Logo">
+        </a>
+        <nav>
+          <a href="Homepage_MingleBlendr.html">Home</a>
+          <a href="Profilepage_MingleBlendr.html">Profile</a>
+          <a href="Grouppage_MingleBlendr.html">Groups</a>
+          <a href="Inboxpage_MingleBlendr.html">Inbox</a>
+          <a href="Eventspage_MingleBlendr.html">Events</a>
+          <a href="FAQpage_MingleBlendr.html">FAQ</a>
+        </nav>
+      </header>
+
+    <div class="wrapper">
+        <div class="bg"></div>
+        <div class="mainbody container_12">
+            <div class="interests grid_4 push_1 alpha">
+                <button>Swimming</button>
+                <button>Music</button>
+                <button>Card games</button>
+                <button>Football</button>
+            </div>
+            <div class="blender grid_4 ">
+                <img class="imageblender" src="images/blender.jpg" alt="image of blender" width="300" height="300">
+                <div class="RegisterLogin">
+                    <button>Register</button>
+                    <button>Login</button>
+                </div>
+                <img class="imageface" src="images/strawberry.jpeg" alt="face" width="50" height="50">
+            </div>
+            <div class="interests grid_4 omega">
+                <button>Digestion</button>
+                <button>Pressing buttons</button>
+                <button>Languages</button>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <p>&copy; 2023 MingleBlendr | contact@mingleblendr.com</p>
+    </footer>
+</body>
+</html>

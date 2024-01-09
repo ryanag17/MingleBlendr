@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MingleBlendr FAQ</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #848fa5;
+      color: #fefbec;
+    }
+
+    header {
+      background-color: #2c363f; /* Header and footer background color */
+      color: #fefbec; /* Text color for header and footer */
+      text-align: center; /* Center align text */
+      padding: 20px 0; /* Add padding top and bottom */
+    }
+
+    header nav {
+      display: flex;
+      justify-content: center; /* Center align navigation links */
+    }
+
+    header nav a {
+      font-weight: bold;
+      font-size: 18px;
+      text-decoration: none;
+      color: #fefbec;
+      margin: 0 10px; /* Add spacing between links */
+    }
+
+    header nav a[href="#events"] {
+      text-decoration: underline;
+      text-decoration-color: red;
+    }
+
+    #logo {
+      max-width: 150px; /* Set maximum width */
+      height: auto; /* Maintain aspect ratio */
+    }
+
+    .main-section {
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .column {
+      flex-basis: 45%; /* Adjust the width of each column */
+    }
+
+    .question-box {
+      cursor: pointer;
+      border-radius: 10px;
+      background-color: #2c363f;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    .answer-box {
+      display: none;
+      background-color: #fefbec;
+      color: #000; /* Black text for opened answer box */
+      padding: 10px;
+      border-radius: 10px;
+      margin-top: 5px;
+      margin-bottom: 10px; /* Add margin at the bottom to separate from the next question */
+    }
+
+    #contact-form-container {
+      background-color: #2c363f;
+      padding: 20px;
+      border-radius: 10px;
+      width: 60%; /* Adjusted width to be smaller */
+      margin: 10px auto; /* Center the form */
+    }
+
+    #contact-form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    #contact-form label {
+      color: #fefbec;
+    }
+
+    #contact-form input, #contact-form textarea {
+      margin-bottom: 10px;
+      padding: 8px;
+      width: 100%; /* Make input boxes full width */
+    }
+
+    #contact-form #subject {
+      width: 70%; /* Make subject box slightly smaller */
+    }
+
+    #contact-form #message {
+      height: 100px; /* Keep the height of the message box */
+    }
+
+    #submit-btn {
+      background-color: #4d94ff; /* Different blue color for friendly button */
+      color: #fefbec;
+      padding: 8px 15px; /* Smaller in length, larger in height */
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 500px;
+      font-weight: bold;
+      margin: 10px auto;
+    }
+
+    footer {
+      background-color: #2c363f;
+      color: #fefbec;
+      text-align: center;
+      padding: 10px;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="home.html">
+      <img id="logo" src="mingleblendr logo vers2.png" alt="MingleBlendr Logo">
+    </a>
+    <nav>
+      <a href="Homepage_MingleBlendr.html">Home</a>
+      <a href="Profilepage_MingleBlendr.html">Profile</a>
+      <a href="Grouppage_MingleBlendr.html">Groups</a>
+      <a href="Inboxpage_MingleBlendr.html">Inbox</a>
+      <a href="Eventspage_MingleBlendr.html">Events</a>
+      <a href="FAQpage_MingleBlendr.html">FAQ</a>
+    </nav>
+  </header>
+
+  <div class="main-section">
+    <div class="column">
+      <div class="question-box" onclick="toggleAnswer(1)">What is MingleBlendr?</div>
+      <div class="answer-box" id="answer1">MingleBlendr is a social platform designed to...</div>
+
+      <!-- Add more question boxes and answer boxes as needed -->
+
+      <div class="question-box" onclick="toggleAnswer(4)">How do I change my profile picture?</div>
+      <div class="answer-box" id="answer4">To change your profile picture, navigate to your profile settings.</div>
+    </div>
+
+    <div class="column">
+      <div class="question-box" onclick="toggleAnswer(2)">How do I create a group?</div>
+      <div class="answer-box" id="answer2">To create a group, go to the groups section and click on the "Create Group" button...</div>
+
+      <!-- Add more question boxes and answer boxes as needed -->
+
+      <div class="question-box" onclick="toggleAnswer(5)">Can I deactivate my account?</div>
+      <div class="answer-box" id="answer5">Yes, you can deactivate your account by going to the account settings.</div>
+    </div>
+  </div>
+
+  <div id="contact-form-container">
+    <h2>Contact Us</h2>
+    <form id="contact-form">
+      <label for="firstName">First Name:</label>
+      <input type="text" id="firstName" style="width: 500px;" required>
+
+      <label for="lastName">Last Name:</label>
+      <input type="text" id="lastName" style="width: 500px;">
+
+      <label for="email">Email Address:</label>
+      <input type="email" id="email" style="width: 500px;" required>
+
+      <label for="subject">Subject:</label>
+      <input type="text" id="subject" style="width: 1000px;" required>
+
+      <label for="message">Message:</label>
+      <textarea id="message" rows="5" required></textarea>
+
+      <button type="button" id="submit-btn" onclick="submitForm()">Send Message</button>
+    </form>
+  </div>
+
+  <footer>
+    &copy; 2023 MingleBlendr | Contact: contact@mingleblendr.com
+  </footer>
+
+  <script>
+    function toggleAnswer(questionNumber) {
+      const answer = document.getElementById(`answer${questionNumber}`);
+      const allAnswers = document.querySelectorAll('.answer-box');
+
+      allAnswers.forEach(box => {
+        if (box !== answer) {
+          box.style.display = 'none';
+        }
+      });
+
+      if (answer.style.display === 'block') {
+        answer.style.display = 'none';
+      } else {
+        answer.style.display = 'block';
+      }
+    }
+
+    function showPopup() {
+      alert("Thank you for your message! We will get back to you ASAP during our working hours.");
+      clearAnswers();
+    }
+
+    function submitForm() {
+      // Perform form submission logic if needed
+      showPopup();
+    }
+
+    function clearAnswers() {
+        document.getElementById("contact-form").reset();
+      };
+  </script>
+
+</body>
+</html>
+
+
+ <!-- increase font size -->
+ <!-- change size of submit box on contact form, smaller -->
+ <!-- increase font size -->

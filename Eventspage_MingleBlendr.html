@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Calendar</title>
+    <style>
+        /* Applying specified color codes */
+        body {
+            font-family: Arial, sans-serif;
+            color: #fefbec; /* Text color */
+            background-color: #848fa5; /* Background color */
+            margin: 0; /* Remove default body margin */
+        }
+
+        header {
+            background-color: #2c363f; /* Header and footer background color */
+            color: #fefbec; /* Text color for header and footer */
+            text-align: center; /* Center align text */
+            padding: 20px 0; /* Add padding top and bottom */
+        }
+
+        footer {
+            background-color: #2c363f;
+            color: #fefbec;
+            text-align: center;
+            padding: 20px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        header nav {
+            display: flex;
+            justify-content: center; /* Center align navigation links */
+        }
+
+        header nav a {
+            font-weight: bold;
+            font-size: 18px;
+            text-decoration: none;
+            color: #fefbec;
+            margin: 0 10px; /* Add spacing between links */
+        }
+
+        header nav a[href="#events"] {
+            text-decoration: underline;
+            text-decoration-color: red;
+        }
+
+        /* Adjust logo size */
+        #logo {
+            max-width: 150px; /* Set maximum width */
+            height: auto; /* Maintain aspect ratio */
+        }
+
+        /* Calendar grid styles */
+        .calendar {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+            max-width: 600px;
+            margin: 20px auto;
+        }
+
+        .day {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        .highlight {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .event {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <!-- Provided header code -->
+    <header>
+        <a href="home.html">
+            <img id="logo" src="mingleblendr logo vers2.png" alt="MingleBlendr Logo">
+        </a>
+        <nav>
+            <a href="Homepage_MingleBlendr.html">Home</a>
+            <a href="Profilepage_MingleBlendr.html">Profile</a>
+            <a href="Grouppage_MingleBlendr.html">Groups</a>
+            <a href="Inboxpage_MingleBlendr.html">Inbox</a>
+            <a href="Eventspage_MingleBlendr.html">Events</a>
+            <a href="FAQpage_MingleBlendr.html">FAQ</a>
+        </nav>
+    </header>
+
+
+    <div class="calendar">
+        <div class="day">Sun</div>
+        <div class="day">Mon</div>
+        <div class="day">Tue</div>
+        <div class="day">Wed</div>
+        <div class="day">Thu</div>
+        <div class="day">Fri</div>
+        <div class="day">Sat</div>
+        <div class="day">-</div>
+        <div class="day">-</div>
+        <div class="day">1</div>
+        <div class="day">2</div>
+        <div class="day">3</div>
+        <div class="day">4</div>
+        <div class="day">5</div>
+        <div class="day">6</div>
+        <div class="day highlight"><span class="event">Picnic</span></div>
+        <div class="day">8</div>
+        <div class="day">9</div>
+        <div class="day">10</div>
+        <div class="day">11</div>
+        <div class="day">12</div>
+        <div class="day">13</div>
+        <div class="day">14</div>
+        <div class="day">15</div>
+        <div class="day">16</div>
+        <div class="day">17</div>
+        <div class="day">18</div>
+        <div class="day">19</div>
+        <div class="day highlight"><span class="event">Movie Night</span></div>
+        <div class="day">21</div>
+        <div class="day">22</div>
+        <div class="day">23</div>
+        <div class="day">24</div>
+        <div class="day">25</div>
+        <div class="day">26</div>
+        <div class="day highlight"><span class="event">Music Festival</span></div>
+        <div class="day">28</div>
+        <div class="day">29</div>
+        <div class="day">30</div>
+        <div class="day">31</div>
+    </div>
+
+    <!-- Include the provided footer -->
+    <footer>
+        &copy; 2023 MingleBlendr | Contact: contact@mingleblendr.com
+    </footer>
+</body>
+</html>

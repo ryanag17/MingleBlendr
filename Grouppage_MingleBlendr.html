@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>forum</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                color: #fefbec; /* Text color */
+                background-color: #848fa5; /* Background color */
+                margin: 0; /* Remove default body margin */
+            }
+            header  {
+                background-color: #2c363f;
+                color: #fefbec;
+                text-align: center;
+                padding: 20px 0;
+            }
+            header nav {
+                display: flex;
+                justify-content: center;
+            }
+
+            header nav a {
+                font-weight: bold;
+                font-size: 18px;
+                text-decoration: none;
+                color: #fefbec;
+                margin: 0 10px; /* Add spacing between links */
+            }
+
+            header nav a[href="#events"] {
+                text-decoration: underline;
+                text-decoration-color: red;
+            }
+
+            #logo {
+                max-width: 150px; /* Set maximum width */
+                height: auto; /* Maintain aspect ratio */
+            }
+            li {
+                float:right;
+                list-style-type:none;
+            }
+            li a {
+                display:inline-block;
+                color:blue;
+                text-align:center;padding:12px 16px;
+                color:white;
+                list-style-type:none
+
+            }
+            .forum {
+                list-style-type:none;
+                overflow:hidden;
+                clear:both;
+                background-color: #333;
+                top:0px
+            }
+            .forum {
+                float:left;
+            }
+            .logo {
+                float:left;
+                top:0
+            }
+            body{
+                background-color: #848fa5;
+            }
+            .active {
+                background-color:red;
+            }
+            footer {
+                position:fixed;
+                color:black;
+                bottom:0px;
+                padding:12px;
+                margin:10px;
+            }
+            li:hover {
+                background-color:red;
+            }
+        </style>
+        <body>
+            <header>
+                <a href="home.html">
+                    <img id="logo" src="mingleblendr logo vers2.png" alt="MingleBlendr Logo">
+                </a>
+                <nav>
+                    <a href="Homepage_MingleBlendr.html">Home</a>
+                    <a href="Profilepage_MingleBlendr.html">Profile</a>
+                    <a href="Grouppage_MingleBlendr.html">Groups</a>
+                    <a href="Inboxpage_MingleBlendr.html">Inbox</a>
+                    <a href="Eventspage_MingleBlendr.html">Events</a>
+                    <a href="FAQpage_MingleBlendr.html">FAQ</a>
+                </nav>
+            </header>
+
+
+
+                <ul class="forum">
+                    <li><a href="#create_group">Delete Group</a></li>
+                    <li><a href="#edit_group">Edit Group</a></li>
+                    <li><a href="#delete_group">Create Group</a></li>
+                </ul>
+            
+
+            <br><br>
+            <footer class="footer">
+                <p>&copy; 2023 MingleBlendr | contact@mingleblendr.com</p>
+            </footer>
+        </body>
+    </head>
+</html>
+
+

@@ -9,43 +9,43 @@
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      color: #fefbec; /* Text color */
-      background-color: #848fa5; /* Background color */
+      color: #fefbec;
+      background-color: #848fa5;
     }
 
     header {
-        background-color: #2c363f;
-        color: #fefbec;
-        text-align: center;
-        padding: 20px 0;
+      background-color: #2c363f;
+      color: #fefbec;
+      text-align: center;
+      padding: 20px 0;
     }
 
     header nav {
-        display: flex;
-        justify-content: center;
+      display: flex;
+      justify-content: center;
     }
 
     header nav a {
-        font-weight: bold;
-        font-size: 18px;
-        text-decoration: none;
-        color: #fefbec;
-        margin: 0 10px; /* Add spacing between links */
+      font-weight: bold;
+      font-size: 18px;
+      text-decoration: none;
+      color: #fefbec;
+      margin: 0 10px;
     }
 
     header nav a[href="#events"] {
-        text-decoration: underline;
-        text-decoration-color: red;
+      text-decoration: underline;
+      text-decoration-color: red;
     }
 
     #logo {
-        max-width: 150px; /* Set maximum width */
-        height: auto; /* Maintain aspect ratio */
+      max-width: 150px;
+      height: auto; 
     }
 
     #inbox-container {
       margin: 20px;
-      background-color: #848fa5; /* Main content background color */
+      background-color: #848fa5; 
       border-radius: 10px;
       width: 100%;
       overflow: hidden;
@@ -118,6 +118,17 @@
       color: #000;
     }
 
+    #message-box-template {
+      border: 1px solid #ddd;
+      padding: 10px;
+      margin-bottom: 10px;
+      background-color: #fff;
+      border-radius: 5px;
+      min-height: 200px;
+      overflow-y: auto;
+      color: #000;
+    }
+
     #message-input {
       width: calc(100% - 22px);
       padding: 10px;
@@ -139,119 +150,168 @@
 </head>
 <body>
 
-    <header>
-        <a href="home.html">
-            <img id="logo" src="mingleblendr logo vers2.png" alt="MingleBlendr Logo">
-        </a>
-        <nav>
-            <a href="Homepage_MingleBlendr.html">Home</a>
-            <a href="Profilepage_MingleBlendr.html">Profile</a>
-            <a href="Grouppage_MingleBlendr.html">Groups</a>
-            <a href="Inboxpage_MingleBlendr.html">Inbox</a>
-            <a href="Eventspage_MingleBlendr.html">Events</a>
-            <a href="FAQpage_MingleBlendr.html">FAQ</a>
-        </nav>
-    </header>
-    
-      <div id="inbox-container">
-        <div id="group-actions">
-          <button onclick="createGroup()">Create Group</button>
-          <button onclick="deleteGroup()">Delete Group</button>
-          <button onclick="changeGroupName()">Change Group Name</button>
-        </div>
-    
-        <div id="conversation-list-container">
-          <div id="conversation-list">
-            <a href="#" onclick="switchChat('user1')" id="chat-user1">User 1</a>
-            <a href="#" onclick="switchChat('user2')" id="chat-user2">User 2</a>
-            <a href="#" onclick="switchChat('group1')" id="chat-group1">Group 1</a>
-            <a href="#" onclick="switchChat('group2')" id="chat-group2">Group 2</a>
-          </div>
-        </div>
-    
-        <div id="message-container">
-          <div id="message-box-user1" class="message-box">
-            <!-- User 1 Messages -->
-          </div>
-    
-          <div id="message-box-user2" class="message-box" style="display: none;">
-            <!-- User 2 Messages -->
-          </div>
-    
-          <div id="message-box-group1" class="message-box" style="display: none;">
-            <!-- Group 1 Messages -->
-          </div>
-    
-          <div id="message-box-group2" class="message-box" style="display: none;">
-            <!-- Group 2 Messages -->
-          </div>
-    
-          <textarea id="message-input" placeholder="Type your message..." onkeydown="handleEnterKey(event)"></textarea>
-          <button onclick="sendMessage()">Send</button>
-        </div>
+  <header>
+    <a href="Homepage_MingleBlendr.html">
+      <img id="logo" src="mingleblendr logo vers2.png" alt="MingleBlendr Logo">
+    </a>
+    <nav>
+      <a href="Homepage_MingleBlendr.html">Home</a>
+      <a href="Profilepage_MingleBlendr.html">Profile</a>
+      <a href="Grouppage_MingleBlendr.html">Groups</a>
+      <a href="Inboxpage_MingleBlendr.html">Inbox</a>
+      <a href="Eventspage_MingleBlendr.html">Events</a>
+      <a href="FAQpage_MingleBlendr.html">FAQ</a>
+    </nav>
+  </header>
+  
+  <div id="inbox-container">
+    <div id="group-actions">
+      <button onclick="createGroup()">Create Group</button>
+      <button onclick="deleteGroup()">Delete Group</button>
+    </div>
+
+    <div id="conversation-list-container">
+      <div id="conversation-list">
+        <a href="#" onclick="switchChat('user1')" id="chat-user1">User 1</a>
+        <a href="#" onclick="switchChat('user2')" id="chat-user2">User 2</a>
+        <a href="#" onclick="switchChat('group1')" id="chat-group1">Group 1</a>
+        <a href="#" onclick="switchChat('group2')" id="chat-group2">Group 2</a>
+      </div>
+    </div>
+
+    <div id="message-container">
+      <div id="message-box-user1" class="message-box">
+        <!-- User 1 Messages -->
       </div>
 
-      <footer>
-        &copy; 2023 MingleBlendr | Contact: contact@mingleblendr.com
-      </footer>
-    
-      <script>
-        function createGroup() {
-          alert("Group created!");
-        }
-    
-        function deleteGroup() {
-          alert("Group deleted!");
-        }
-    
-        function changeGroupName() {
-          alert("Group name changed!");
-        }
-    
-        function sendMessage() {
-          const messageInput = document.getElementById('message-input');
-          const currentChat = getCurrentChatId();
-          const messageBox = document.getElementById(`message-box-${currentChat}`);
-          const messageText = messageInput.value;
-    
-          if (messageText.trim() !== '') {
-            messageBox.innerHTML += `<p><strong>You:</strong> ${messageText}</p>`;
-            messageInput.value = '';
+      <div id="message-box-user2" class="message-box" style="display: none;">
+        <!-- User 2 Messages -->
+      </div>
+
+      <div id="message-box-group1" class="message-box" style="display: none;">
+        <!-- Group 1 Messages -->
+      </div>
+
+      <div id="message-box-group2" class="message-box" style="display: none;">
+        <!-- Group 2 Messages -->
+      </div>
+
+      <div id="message-box-template" class="message-box" style="display: none;">
+        <!-- Other Messages -->
+      </div>      
+
+      <textarea id="message-input" placeholder="Type your message..." onkeydown="handleEnterKey(event)"></textarea>
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2023 MingleBlendr | contact@mingleblendr.com
+  </footer>
+
+  <script>
+    function createGroup() {
+      const groupName = prompt('Enter the name for the new group:');
+      if (groupName) {
+        const newChatLink = document.createElement('a');
+        newChatLink.href = '#';
+        newChatLink.textContent = groupName;
+        newChatLink.id = `chat-${groupName}`;
+        newChatLink.onclick = function () {
+          switchChat(groupName);
+        };
+        document.getElementById('conversation-list').appendChild(newChatLink);
+
+        const newMessageBox = document.createElement('div');
+        newMessageBox.id = `message-box-${groupName}`;
+        newMessageBox.className = 'message-box';
+        const messageContainer = document.getElementById('message-container');
+        messageContainer.insertBefore(newMessageBox, messageContainer.childNodes[0]);
+
+        switchChat(groupName);
+        alert(`Group "${groupName}" created!`);
+
+        const conversationList = document.getElementById('conversation-list');
+        conversationList.scrollTop = conversationList.scrollHeight;
+  }
+}
+
+    function initializePage() {
+      const defaultChat = document.getElementById('chat-user1');
+      if (defaultChat) {
+        defaultChat.click();
+      }
+    }
+
+    window.addEventListener('load', initializePage);
+
+    const accessedChats = [];
+  
+    function deleteGroup() {
+      const currentChat = getCurrentChatId();
+      const confirmDelete = confirm(`Are you sure you want to delete the chat "${currentChat}"?`);
+      if (confirmDelete) {
+        const chatLinkToRemove = document.getElementById(`chat-${currentChat}`);
+        const messageBoxToRemove = document.getElementById(`message-box-${currentChat}`);
+        chatLinkToRemove.remove();
+        messageBoxToRemove.remove();
+        alert(`Chat "${currentChat}" deleted!`);
+
+        for (let i = accessedChats.length - 1; i >= 0; i--) {
+          if (document.getElementById(`chat-${accessedChats[i]}`)) {
+            switchChat(accessedChats[i]);
+            break;
           }
         }
-    
-        function switchChat(chatId) {
-          const allMessageBoxes = document.querySelectorAll('.message-box');
-          allMessageBoxes.forEach(box => {
-            box.style.display = 'none';
-          });
-    
-          const currentMessageBox = document.getElementById(`message-box-${chatId}`);
-          currentMessageBox.style.display = 'block';
-    
-          // Highlight the active chat in the conversation list
-          const allChatLinks = document.querySelectorAll('#conversation-list a');
-          allChatLinks.forEach(link => {
-            link.classList.remove('active-chat');
-          });
-    
-          const currentChatLink = document.getElementById(`chat-${chatId}`);
-          currentChatLink.classList.add('active-chat');
-        }
-    
-        function getCurrentChatId() {
-          // Logic to determine the current chat ID based on user interaction
-          // For simplicity, let's assume a variable is set elsewhere to store the current chat ID
-          return 'user1'; // Replace with your actual logic to get the current chat ID
-        }
-    
-        function handleEnterKey(event) {
-          if (event.key === 'Enter') {
-            event.preventDefault();
-            sendMessage();
-          }
-        }
-      </script>
-    
-    </body>
-    </html>
+      }
+    }
+
+    function sendMessage() {
+      const messageInput = document.getElementById('message-input');
+      const currentChat = getCurrentChatId();
+      const messageBox = document.getElementById(`message-box-${currentChat}`);
+      const messageText = messageInput.value;
+
+      if (messageText.trim() !== '') {
+        messageBox.innerHTML += `<p><strong>You:</strong> ${messageText}</p>`;
+        messageInput.value = '';
+      }
+    }
+
+    function switchChat(chatId) {
+      const allMessageBoxes = document.querySelectorAll('.message-box');
+      allMessageBoxes.forEach(box => {
+        box.style.display = 'none';
+      });
+
+      const currentMessageBox = document.getElementById(`message-box-${chatId}`);
+      currentMessageBox.style.display = 'block';
+
+      const allChatLinks = document.querySelectorAll('#conversation-list a');
+      allChatLinks.forEach(link => {
+        link.classList.remove('active-chat');
+      });
+
+      const currentChatLink = document.getElementById(`chat-${chatId}`);
+      currentChatLink.classList.add('active-chat');
+
+      if (!accessedChats.includes(chatId)) {
+        accessedChats.push(chatId);
+      }
+    }
+
+    function getCurrentChatId() {
+      const activeChatLink = document.querySelector('#conversation-list a.active-chat');
+      return activeChatLink ? activeChatLink.textContent.trim().toLowerCase().replace(/\s+/g, '') : null;
+    }
+
+    function handleEnterKey(event) {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        sendMessage();
+      }
+    }
+  </script>
+
+</body>
+</html>

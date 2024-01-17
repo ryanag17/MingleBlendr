@@ -49,6 +49,7 @@
       border-radius: 10px;
       width: 100%;
       overflow: hidden;
+      font-size: 18px;
     }
 
     #group-actions {
@@ -64,6 +65,7 @@
       border-radius: 5px;
       cursor: pointer;
       margin-right: 10px;
+      font-size: 18px;
     }
 
     button:hover {
@@ -77,6 +79,7 @@
       vertical-align: top;
       background-color: #e6e6e6;
       border-radius: 10px;
+      font-size: 18px;
     }
 
     #conversation-list {
@@ -105,6 +108,7 @@
       vertical-align: top;
       width: calc(100% - 320px);
       padding: 20px;
+      font-size: 18px;
     }
 
     .message-box {
@@ -116,6 +120,7 @@
       min-height: 200px;
       overflow-y: auto;
       color: #000;
+      font-size: 18px;
     }
 
     #message-box-template {
@@ -127,6 +132,7 @@
       min-height: 200px;
       overflow-y: auto;
       color: #000;
+      font-size: 18px;
     }
 
     #message-input {
@@ -135,6 +141,12 @@
       margin: 10px;
       border: 1px solid #ddd;
       border-radius: 5px;
+    }
+
+    .message-time {
+      font-size: 14px;
+      color: #888;
+      margin-left: 10px;
     }
     
     footer {
@@ -197,7 +209,7 @@
       </div>
 
       <div id="message-box-template" class="message-box" style="display: none;">
-        <!-- Other Messages -->
+        <!-- Template Messages -->
       </div>      
 
       <textarea id="message-input" placeholder="Type your message..." onkeydown="handleEnterKey(event)"></textarea>
@@ -233,8 +245,8 @@
 
         const conversationList = document.getElementById('conversation-list');
         conversationList.scrollTop = conversationList.scrollHeight;
-  }
-}
+      }
+    }
 
     function initializePage() {
       const defaultChat = document.getElementById('chat-user1');
@@ -273,7 +285,9 @@
       const messageText = messageInput.value;
 
       if (messageText.trim() !== '') {
-        messageBox.innerHTML += `<p><strong>You:</strong> ${messageText}</p>`;
+        const timestamp = getCurrentTime();
+        const formattedMessage = `<p><strong>You:</strong> ${messageText} <span class="message-time">${timestamp}</span></p>`;
+        messageBox.innerHTML += formattedMessage;
         messageInput.value = '';
       }
     }
@@ -298,6 +312,13 @@
       if (!accessedChats.includes(chatId)) {
         accessedChats.push(chatId);
       }
+    }
+
+    function getCurrentTime() {
+      const now = new Date();
+      const hours = now.getHours().toString().padStart(2, '0');
+      const minutes = now.getMinutes().toString().padStart(2, '0');
+      return `${hours}:${minutes}`;
     }
 
     function getCurrentChatId() {

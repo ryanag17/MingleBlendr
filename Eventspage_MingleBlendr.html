@@ -5,19 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Event Calendar</title>
     <style>
-        /* Applying specified color codes */
         body {
             font-family: Arial, sans-serif;
-            color: #fefbec; /* Text color */
-            background-color: #848fa5; /* Background color */
-            margin: 0; /* Remove default body margin */
+            color: #fefbec;
+            background-color: #848fa5;
+            margin: 0;
         }
 
         header {
-            background-color: #2c363f; /* Header and footer background color */
-            color: #fefbec; /* Text color for header and footer */
-            text-align: center; /* Center align text */
-            padding: 20px 0; /* Add padding top and bottom */
+            background-color: #2c363f;
+            color: #fefbec;
+            text-align: center;
+            padding: 20px 0;
         }
 
         footer {
@@ -32,7 +31,7 @@
 
         header nav {
             display: flex;
-            justify-content: center; /* Center align navigation links */
+            justify-content: center;
         }
 
         header nav a {
@@ -40,7 +39,7 @@
             font-size: 18px;
             text-decoration: none;
             color: #fefbec;
-            margin: 0 10px; /* Add spacing between links */
+            margin: 0 10px; 
         }
 
         header nav a[href="#events"] {
@@ -48,13 +47,29 @@
             text-decoration-color: red;
         }
 
-        /* Adjust logo size */
         #logo {
-            max-width: 150px; /* Set maximum width */
-            height: auto; /* Maintain aspect ratio */
+            max-width: 150px;
+            height: auto;
         }
 
-        /* Calendar grid styles */
+        .calendar-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        #createEventButton {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px;
+            margin-top: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
         .calendar {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
@@ -67,6 +82,7 @@
             padding: 10px;
             border: 1px solid #ddd;
             text-align: center;
+            cursor: pointer;
         }
 
         .highlight {
@@ -74,15 +90,57 @@
             color: white;
         }
 
+        .current-day {
+            background-color: #28a745;
+            color: white;
+        }
+
         .event {
             font-weight: bold;
+        }
+
+        #eventDetailsSection {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .eventDetailsBox {
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            padding: 5px;
+            margin-bottom: 5px;
+            color: black;
+            display: none;
+            text-align: center;
+            max-width: 200px;
+        }
+
+        .eventDetailsBox.active {
+            display: block;
+        }
+
+        #eventDetailsModal {
+            display: none;
+            text-align: center;
+        }
+
+        #eventDetailsModal button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
-    <!-- Provided header code -->
     <header>
-        <a href="home.html">
+        <a href="Homepage_MingleBlendr.html">
             <img id="logo" src="mingleblendr logo vers2.png" alt="MingleBlendr Logo">
         </a>
         <nav>
@@ -95,53 +153,163 @@
         </nav>
     </header>
 
-
-    <div class="calendar">
-        <div class="day">Sun</div>
-        <div class="day">Mon</div>
-        <div class="day">Tue</div>
-        <div class="day">Wed</div>
-        <div class="day">Thu</div>
-        <div class="day">Fri</div>
-        <div class="day">Sat</div>
-        <div class="day">-</div>
-        <div class="day">-</div>
-        <div class="day">1</div>
-        <div class="day">2</div>
-        <div class="day">3</div>
-        <div class="day">4</div>
-        <div class="day">5</div>
-        <div class="day">6</div>
-        <div class="day highlight"><span class="event">Picnic</span></div>
-        <div class="day">8</div>
-        <div class="day">9</div>
-        <div class="day">10</div>
-        <div class="day">11</div>
-        <div class="day">12</div>
-        <div class="day">13</div>
-        <div class="day">14</div>
-        <div class="day">15</div>
-        <div class="day">16</div>
-        <div class="day">17</div>
-        <div class="day">18</div>
-        <div class="day">19</div>
-        <div class="day highlight"><span class="event">Movie Night</span></div>
-        <div class="day">21</div>
-        <div class="day">22</div>
-        <div class="day">23</div>
-        <div class="day">24</div>
-        <div class="day">25</div>
-        <div class="day">26</div>
-        <div class="day highlight"><span class="event">Music Festival</span></div>
-        <div class="day">28</div>
-        <div class="day">29</div>
-        <div class="day">30</div>
-        <div class="day">31</div>
+    <div class="calendar-container">
+        <h2 id="currentMonthYear" style="text-align: center; font-weight: bold; font-size: 36px;"></h2>
+        <button id="createEventButton" onclick="addEvent()">Create Event</button>
     </div>
 
-    <!-- Include the provided footer -->
+    <div class="calendar" id="calendar"></div>
+
+    <div id="eventDetailsSection"></div>
+
+    <div id="eventDetailsModal">
+        <h3 id="eventDetailsTitle"></h3>
+        <p id="eventDetailsDate"></p>
+        <p id="eventDetailsTime"></p>
+        <p id="eventDetailsLocation"></p>
+        <p id="eventDetailsDescription"></p>
+        <button onclick="closeEventDetails()">Close</button>
+    </div>
+
     <footer>
-        &copy; 2023 MingleBlendr | Contact: contact@mingleblendr.com
+        &copy; 2023 MingleBlendr | contact@mingleblendr.com
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            displayCalendar();
+        });
+
+        function displayCalendar() {
+            const calendarContainer = document.getElementById('calendar');
+            const currentMonthYearElement = document.getElementById('currentMonthYear');
+            const eventDetailsSection = document.getElementById('eventDetailsSection');
+            const today = new Date();
+            const currentMonth = today.getMonth() + 1;
+            const currentYear = today.getFullYear();
+            const currentDay = today.getDate();
+
+            calendarContainer.innerHTML = '';
+
+            currentMonthYearElement.textContent = `${getMonthName(currentMonth)} ${currentYear}`;
+
+            const daysInMonth = new Date(currentYear, currentMonth, 0).getDate();
+            const firstDayOfWeek = new Date(currentYear, currentMonth - 1, 1).getDay();
+
+            for (let i = 0; i < firstDayOfWeek; i++) {
+                createDayElement(calendarContainer, '-');
+            }
+
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dayElement = createDayElement(calendarContainer, day);
+
+                if ([6, 15, 26].includes(day)) {
+                    dayElement.classList.add('highlight');
+                    dayElement.innerHTML = `<span class="event" onclick="showEventDetails('${day}')">${getEvent(day)}</span>`;
+                }
+
+                if (day === currentDay) {
+                    dayElement.classList.add('current-day');
+                }
+            }
+        }
+
+        function createDayElement(container, day) {
+            const dayElement = document.createElement('div');
+            dayElement.classList.add('day');
+            dayElement.textContent = day;
+            container.appendChild(dayElement);
+            return dayElement;
+        }
+
+        function getMonthName(month) {
+            const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+            return months[month - 1];
+        }
+
+        function getEvent(day) {
+            const events = { 6: 'Picnic', 15: 'Movie Night', 26: 'Music Festival' };
+            return events[day] || '';
+        }
+
+        function addEvent() {
+            const currentMonth = new Date().getMonth() + 1;
+            const currentYear = new Date().getFullYear();
+
+            const eventDate = window.prompt('Enter the date of the event (e.g., YYYY-MM-DD):');
+            const enteredMonth = parseInt(eventDate.split('-')[1]);
+            const enteredYear = parseInt(eventDate.split('-')[0]);
+
+            if (enteredMonth === currentMonth && enteredYear === currentYear) {
+                const eventName = window.prompt('Enter the name of the event:');
+                if (eventName) {
+                    const eventLocation = window.prompt('Enter the location of the event:');
+                    const eventTime = window.prompt('Enter the time of the event:');
+                    const eventDescription = window.prompt('Enter a description for the event:');
+
+                    const eventDay = parseInt(eventDate.split('-')[2]);
+                    const dayElement = document.querySelector(`.day:nth-child(${eventDay + 1})`);
+
+                    if (dayElement) {
+                        dayElement.innerHTML = `<span class="event" onclick="showEventDetails('${eventDay}')">${eventName}</span>`;
+                        dayElement.classList.add('highlight');
+
+                        dayElement.setAttribute('data-event-name', eventName);
+                        dayElement.setAttribute('data-event-time', eventTime);
+                        dayElement.setAttribute('data-event-location', eventLocation);
+                        dayElement.setAttribute('data-event-description', eventDescription);
+
+                        displayEventDetails(eventName, eventDate, eventTime, eventLocation, eventDescription);
+                    } else {
+                        alert('Invalid date. Please enter a valid date.');
+                    }
+                }
+            } else {
+                alert('You can only create events for the current month and year.');
+            }
+        }
+
+        function displayEventDetails(eventName, eventDate, eventTime, eventLocation, eventDescription) {
+            const eventDetailsSection = document.getElementById('eventDetailsSection');
+            const eventDetailsBox = document.createElement('div');
+            eventDetailsBox.classList.add('eventDetailsBox', 'active');
+            eventDetailsBox.innerHTML = `
+                <h3>${eventName}</h3>
+                <p>Date: ${eventDate}</p>
+                <p>Time: ${eventTime}</p>
+                <p>Location: ${eventLocation}</p>
+                <p>Description: ${eventDescription}</p>
+            `;
+            eventDetailsSection.appendChild(eventDetailsBox);
+        }
+
+        function showEventDetails(day) {
+            const eventDetailsModal = document.getElementById('eventDetailsModal');
+            const eventDetailsTitle = document.getElementById('eventDetailsTitle');
+            const eventDetailsDate = document.getElementById('eventDetailsDate');
+            const eventDetailsTime = document.getElementById('eventDetailsTime');
+            const eventDetailsLocation = document.getElementById('eventDetailsLocation');
+            const eventDetailsDescription = document.getElementById('eventDetailsDescription');
+
+            const dayElement = document.querySelector(`.day:nth-child(${day + 1})`);
+            const eventName = dayElement.getAttribute('data-event-name') || 'N/A';
+            const eventTime = dayElement.getAttribute('data-event-time') || 'N/A';
+            const eventLocation = dayElement.getAttribute('data-event-location') || 'N/A';
+            const eventDescription = dayElement.getAttribute('data-event-description') || 'N/A';
+
+            eventDetailsTitle.textContent = `Event: ${eventName}`;
+            eventDetailsDate.textContent = `Date: ${getMonthName(currentMonth)} ${day}, ${currentYear}`;
+            eventDetailsTime.textContent = `Time: ${eventTime}`;
+            eventDetailsLocation.textContent = `Location: ${eventLocation}`;
+            eventDetailsDescription.textContent = `Description: ${eventDescription}`;
+
+            eventDetailsModal.style.display = 'block';
+        }
+
+        function closeEventDetails() {
+            const eventDetailsModal = document.getElementById('eventDetailsModal');
+            eventDetailsModal.style.display = 'none';
+        }
+    </script>
 </body>
 </html>

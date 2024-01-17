@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ProfilePage</title>
+        <link rel="stylesheet" href="css/960_12_col.css" />
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                color: #fefbec; /* Text color */
+                background-color: #848fa5; /* Background color */
+                margin: 0; /* Remove default body margin */
+            }
+    
+            header {
+                background-color: #2c363f; /* Header and footer background color */
+                color: #fefbec; /* Text color for header and footer */
+                text-align: center; /* Center align text */
+                padding: 20px 0; /* Add padding top and bottom */
+            }
+    
+            header nav {
+                display: flex;
+                justify-content: center; /* Center align navigation links */
+            }
+    
+            header nav a {
+                font-weight: bold;
+                font-size: 18px;
+                text-decoration: none;
+                color: #fefbec;
+                margin: 0 10px; /* Add spacing between links */
+            }
+    
+            header nav a[href="#events"] {
+                text-decoration: underline;
+                text-decoration-color: red;
+            }
+
+            header nav a:hover{
+            background-color: #555;
+            color: white;
+            }
+
+            .active {
+            background-color: #cccecd;
+            color: #000000;
+            }
+    
+            #logo {
+                max-width: 150px; /* Set maximum width */
+                height: auto; /* Maintain aspect ratio */
+            }
+    
+            .container_12 {
+                width: 960px;
+                margin: 0 auto;
+            }
+    
+            a {
+                color: #b5c1ad;
+                text-decoration: none;
+            }
+    
+            .bg {
+                position: absolute;
+                z-index: -1;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                opacity: .6;
+                width: 100%;
+                height: 100%;
+            }
+    
+            .wrapper {
+                width: 100%;
+                margin: 100px auto;
+                opacity: 1;
+            }
+    
+            .mainbody {
+                height: 860px;
+            }
+
+            .footer {
+                background-color: #2c363f;
+                color: #fefbec;
+                padding: 10px;
+                text-align: center;
+                position: fixed;
+                bottom: 0;
+                width: 100%;
+            }
+
+            .wrapper {
+            width: 100%;
+            margin: 100px auto;
+            opacity: 1;
+            }
+
+            .picture{
+                width: 300px;
+                height: 300px;
+                background-color: #222c363f;
+                position: relative;
+            }
+
+            #avatar{
+                position: absolute;
+                max-width: 50%;
+                left: 25%;
+                top: 10%;
+            }
+            .editbutton{
+                position: absolute;
+                top: 70%;
+                left: 35%;
+            }
+            
+            .info{
+                height: 400px;
+                width: 80%;
+                background-color: #222c363f;
+                margin-bottom: 10px;
+            }
+
+            .photoreel{
+                height: 400px;
+                width: 80%;
+                background-color: #222c363f;
+            }
+            
+            li {
+                font-weight: bold;
+                font-size: 18px;
+                text-decoration: none;
+                color: #fefbec;
+                margin: 20 30px; /* Add spacing between links */
+                padding: 10px;
+            }
+
+            .scroll-container{
+                background-color: #222c363f;
+                overflow: auto;
+                white-space: nowrap;
+                padding: 10px;
+                width: 100%;
+                margin-top: 20px;
+                margin-left: 5%;
+            }
+            .scroll-container img{
+                padding: 10px;
+                max-width: 300px;
+                max-height: 300px;
+            }
+
+            .Biography {
+                height: 300px;
+                width: 80%;
+                background-color: #222c363f;
+                margin-bottom: 20px;
+                position: relative;
+                z-index: 20;
+            }
+
+            h1{
+                float: left;
+                margin-left: 20px;
+            }
+
+            .buttonedit{
+                margin-top: 20px;
+                float: right;
+                margin-right: 20px;
+            }
+
+            .BiographyParagraph{
+                max-width: 50%;
+                max-height: 300px;
+                word-wrap: break-word;
+                overflow: auto;
+            }
+
+            .containerforhobbies{
+                width: 80%;
+                height: 400px;
+                background-color: #222c363f;
+                margin-top: 20px;
+                margin-left: 10%;
+                margin-bottom: 20px;
+            }
+
+            *{box-sizing: border-box;}
+
+            .slideshow-container{
+                background-color: #222c363f;
+                max-width: 80%;
+                max-height: 600px;
+                position: relative;
+                margin: auto;
+                margin-top: 20px;
+            }
+
+            .mySlides{
+                display: none;
+                text-align: center;
+            }
+
+            .prev,.next{
+                cursor: pointer;
+                position: absolute;
+                top: 50%;
+                width: auto;
+                margin-top: -22px;
+                padding: 16px;
+                color: white;
+                font-weight: bold;
+                font-size: 18px;
+                transition: 0.6s ease;
+                border-radius: 0 3px 3px 0;
+                user-select: none;
+            }
+
+            /* Position the "next button" to the right */
+            .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+            }
+
+            /* On hover, add a black background color with a little bit see-through */
+            .prev:hover, .next:hover {
+            background-color: rgba(0,0,0,0.8);
+            }
+
+            /* Caption text */
+            .text {
+            color: #000000;
+            font-weight: bold;
+            font-size: 18px;
+            padding: 8px 12px;
+            position: absolute;
+            bottom: 8px;
+            width: 100%;
+            text-align: center;
+            background-color: aliceblue;
+            }
+
+            /* Number text (1/3 etc) */
+            .numbertext {
+            color: #f2f2f2;
+            font-size: 12px;
+            padding: 8px 12px;
+            position: absolute;
+            top: 0;
+            }
+
+            /* The dots/bullets/indicators */
+            .dot {
+            cursor: pointer;
+            height: 15px;
+            width: 15px;
+            margin: 0 2px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+            }
+
+            .active, .dot:hover {
+            background-color: #717171;
+            }
+
+            /* Fading animation */
+            .fade {
+            animation-name: fade;
+            animation-duration: 1.5s;
+            }
+
+            @keyframes fade {
+            from {opacity: .4}
+            to {opacity: 1}
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <a href="Homepage_MingleBlendr.html">
+              <img id="logo" src="mingleblendr logo vers2.png" alt="MingleBlendr Logo">
+            </a>
+            <nav>
+              <a href="Homepage_MingleBlendr.html">Home</a>
+              <a class = active href="Profilepage_MingleBlendr.html">Profile</a>
+              <a href="Grouppage_MingleBlendr.html">Groups</a>
+              <a href="Inboxpage_MingleBlendr.html">Inbox</a>
+              <a href="Eventspage_MingleBlendr.html">Events</a>
+              <a href="FAQpage_MingleBlendr.html">FAQ</a>
+            </nav>
+          </header>
+
+          <div class="wrapper">
+            <div class="bg"></div>
+            <div class="container_12">
+                <div class="grid_12 push_4">
+                    <h1>General information</h1>
+                </div>
+            </div>
+
+
+            <div class="info container_12">
+                <div class="grid_6 push_2">
+                    <div class="picture">
+                        <img id="avatar" src="images/strawberry.jpeg" alt="avatarpicture">
+                        <button class="editbutton">Edit profile</button>
+                    </div>
+                </div>
+                <div class="grid_6">
+                    <ul>
+                        <li>Name: Sally Lemonson</li>
+                        <li>Location: Furtwangen</li>
+                        <li>Studies: Business informatics</li>
+                        <li>Birthday: 23 June 1998</li>
+                        <li>Last time online: 3 days ago</li>
+                    </ul>
+                </div>
+            </div>
+
+
+            <div class="BiographyHead container_12">
+                <h1>Biography</h1>
+                <button class="buttonedit">Edit Biography</button>
+            </div>
+            <div class="Biography container_12">
+                <div class="grid_6 pull_1" style="margin-top: 60px;">
+                    <p class="BiographyParagraph">Tell us a little about yourself:
+                        what do you like to eat for breakfast,
+                        what is your favorite color?
+                        What do you enjoy in people you hang out with?
+                    </p>
+                </div>
+                <div class="grid_3">
+                    <h2>Links</h2>
+                    <ul>
+                        <li>linkedin</li>
+                        <li>facebook</li>
+                        <li>instagram</li>
+                    </ul>
+                </div>
+                
+            </div>
+
+            <div class="containerforhobbies">
+                <h1>Hobbies and Groups</h1>
+                <button class="buttonedit">Edit Hobbies and Groups</button>
+                <div class="container_12">
+                    <div class="grid_4 pull_2" style="margin-top: 60px;">
+                        <h2>Hobbies</h2>
+                        <ul>
+                            <li>Skiing</li>
+                            <li>Swimming</li>
+                            <li>Programming</li>
+                        </ul>
+                    </div>
+                    <div class="grid_3" style="margin-top: 20px;">
+                        <h2>Groups</h2>
+                        <ul>
+                            <li>Skiing Freiburg</li>
+                            <li>Skiing Furtwangen</li>
+                            <li>Learning group IBS</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="photoreel container_12">
+                    <h1 style="margin-left: 50px;">Gallery</h1>
+                    <button class="buttonedit" style="margin-right: 50px;">Edit Gallery</button>
+                    <div class="scroll-container grid_12">
+                        <img src="images/austria-alps-mountains_ZmluZWWUmZqaraWkpJRobmlmrWdtamU-2371806518.jpg" alt="blf">
+                        <img src="images/NINTCHDBPICT000437331338.webp" alt="blf">
+                        <img src="images/papers.co-na20-mountain-aurora-sky-night-star-nature-milky-way-36-3840x2400-4k-wallpaper.jpg" alt="blf">
+                        <img src="images/Trash-2679873832.jpg" alt="blf">
+                        <img src="images/aad874e078e5a1cf24129a0cc51d1f32a4-calais-camp02.2x.h473.w710-4015057073.jpg" alt="blf">
+                        <img src="images/israel-gaza-war-photographers-21-2899197093.jpg" alt="blf">
+                    </div>
+            </div>
+
+            <div class="slideshow-container">
+                <div style="height: 100px;">
+                    <h1>Activities</h1>
+                    <button class="buttonedit">Edit Activities</button>
+                </div>
+                <div class="mySlides fade">
+                    <div class="numbertext">1 / 3</div>
+                    <img style="max-height: 400px;" src="images/austria-alps-mountains_ZmluZWWUmZqaraWkpJRobmlmrWdtamU-2371806518.jpg">
+                    <div class="text">Went to mountains</div>
+                </div>
+                <div class="mySlides fade">
+                    <div class="numbertext">2 / 3</div>
+                    <img style="max-height: 400px;" src="images/Puffer_Fish_DSC01257-1522159339.JPG">
+                    <div class="text">Saw a fish</div>
+                </div>
+                <div class="mySlides fade">
+                    <div class="numbertext">3 / 3</div>
+                    <img style="max-height: 400px;" src="images/skiing.webp">
+                    <div class="text">Went skiing</div>
+                </div>
+                <a class="prev" onclick="plusSlides(-1)">&#10094</a>
+                <a class="next" onclick="plusSlides(1)">&#10095</a>
+            </div>
+            <br>
+            <div style="text-align: center;">
+                <span class="dot" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+                <span class="dot" onclick="currentSlide(3)"></span>
+            </div>
+        </div>
+
+        <script>
+            let slideIndex = 1;
+            showSlides(slideIndex);
+
+            // Next/previous controls
+            function plusSlides(n) {
+            showSlides(slideIndex += n);
+            }
+
+            // Thumbnail image controls
+            function currentSlide(n) {
+            showSlides(slideIndex = n);
+            }
+
+            function showSlides(n) {
+            let i;
+            let slides = document.getElementsByClassName("mySlides");
+            let dots = document.getElementsByClassName("dot");
+            if (n > slides.length) {slideIndex = 1}
+            if (n < 1) {slideIndex = slides.length}
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex-1].style.display = "block";
+            dots[slideIndex-1].className += " active";
+            }
+        </script>
+
+
+
+        <footer class="footer">
+            <p>&copy; 2023 MingleBlendr | contact@mingleblendr.com</p>
+        </footer>
+    </body>
+</html>

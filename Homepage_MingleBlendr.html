@@ -38,6 +38,16 @@
             text-decoration-color: red;
         }
 
+        header nav a:hover{
+            background-color: #555;
+            color: white;
+        }
+
+        .active {
+            background-color: #cccecd;
+            color: #000000;
+        }
+
         #logo {
             max-width: 150px; /* Set maximum width */
             height: auto; /* Maintain aspect ratio */
@@ -48,37 +58,6 @@
             margin: 0 auto;
         }
 
-        #nav ul {
-            padding: 0;
-            margin: 0;
-            list-style-type: none;
-        }
-
-        #nav li {
-            display: inline;
-            list-style-type: none;
-        }
-
-        #nav li a {
-            display: inline-block;
-            color: blue;
-            text-align: center;
-            padding: 12px 16px;
-            color: white;
-            list-style-type: none;
-            text-decoration: none;
-        }
-
-        #nav ul li a:hover {
-            background-color: #555;
-            color: white;
-        }
-
-        .active {
-            background-color: #04AA6D;
-            color: white;
-        }
-
         a {
             color: #b5c1ad;
             text-decoration: none;
@@ -87,14 +66,15 @@
         .bg {
             position: absolute;
             z-index: -1;
-            top: 0;
+            top: 20px;
             bottom: 0;
             left: 0;
             right: 0;
-            background: url(images/water-swirl.gif) center center;
             opacity: .6;
             width: 100%;
-            height: 100%;
+            height: 120%;
+            background-image: url("images/colorful_twisting_pattern_fractal_spiral_4k_hd_trippy-HD-1436895718.jpg");
+            background-size: cover;
         }
 
         .wrapper {
@@ -108,43 +88,66 @@
         }
 
         .interests button {
-            background-color: gold;
+            background-color: #ffffff;
             border: 2px black;
-            border-radius: 25px;
+            border-radius: 60px;
+            border-color: rgb(199, 129, 1);
             color: black;
             padding: 25px 25px;
+            outline-color: aquamarine;
             width: 40%;
             display: block;
             margin: 25px;
+            font-weight: bold;
+            font-size: 14px;
+            border: 2px solid black;
         }
 
         .blender {
-            margin: 70px auto;
+            margin-left: 30px;
             position: relative;
             top: 0;
             left: 0;
         }
 
         .imageblender {
-            position: relative;
+            position: center;
             top: 0;
             left: 0;
         }
 
         .imageface {
             position: absolute;
-            top: 80px;
-            left: 120px;
+            top: 25%;
+            left: 38%;
         }
 
-        .RegisterLogin {
-            text-align: center;
-        }
-
-        .RegisterLogin button {
-            background-color: black;
-            color: antiquewhite;
+        .Registerbutton {
+            position: absolute;
+            top: 80%;
+            left: 0%;
+            width: 40%;
+            height: 10%;
+            background-color: yellow;
+            color: black;
             padding: 10px 25px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .Loginbutton{
+    
+               position: absolute;
+            top: 80%;
+            left: 50%;
+            width: 40%;
+            height: 10%;
+            background-color: yellowgreen;
+            color: black;
+            padding: 10px 25px;
+            font-weight: bold;
+            font-size: 18px;
+        
         }
 
         .footer {
@@ -155,16 +158,19 @@
             position: fixed;
             bottom: 0;
             width: 100%;
+            
         }
+        
+
     </style>
 </head>
 <body>
     <header>
-        <a href="home.html">
+        <a href="Homepage_MingleBlendr.html">
           <img id="logo" src="mingleblendr logo vers2.png" alt="MingleBlendr Logo">
         </a>
         <nav>
-          <a href="Homepage_MingleBlendr.html">Home</a>
+          <a class = active href="Homepage_MingleBlendr.html">Home</a>
           <a href="Profilepage_MingleBlendr.html">Profile</a>
           <a href="Grouppage_MingleBlendr.html">Groups</a>
           <a href="Inboxpage_MingleBlendr.html">Inbox</a>
@@ -177,23 +183,21 @@
         <div class="bg"></div>
         <div class="mainbody container_12">
             <div class="interests grid_4 push_1 alpha">
-                <button>Swimming</button>
-                <button>Music</button>
-                <button>Card games</button>
-                <button>Football</button>
+                <button style="margin-left: 30%;">Swimming</button>
+                <button style="margin-left: 0%;">Music</button>
+                <button style="margin-left: 0%;">Card games</button>
+                <button style="margin-left: 30%;">Football</button>
             </div>
             <div class="blender grid_4 ">
-                <img class="imageblender" src="images/blender.jpg" alt="image of blender" width="300" height="300">
-                <div class="RegisterLogin">
-                    <button>Register</button>
-                    <button>Login</button>
-                </div>
+                <img class="imageblender" src="images/blender.png" alt="image of blender" width="300" height="500">
+                <button class="Registerbutton">Register</button>
+                <button class="Loginbutton">Login</button>
                 <img class="imageface" src="images/strawberry.jpeg" alt="face" width="50" height="50">
             </div>
             <div class="interests grid_4 omega">
-                <button>Digestion</button>
-                <button>Pressing buttons</button>
-                <button>Languages</button>
+                <button style="margin-left: 10%;">Digestion</button>
+                <button style="margin-left: 40%;">Pressing buttons</button>
+                <button style="margin-left: 40%;">Languages</button>
             </div>
         </div>
     </div>

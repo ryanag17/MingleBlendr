@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+
+
     <title>HomePage</title>
     <link rel="stylesheet" href="css/960_12_col.css" />
     <style>
@@ -162,6 +165,117 @@
         }
         
 
+
+
+	.center,.start-btn{
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.start-btn a{
+  font-size: 22px;
+  background: orange;
+  color: white;
+  padding: 15px 18px;
+  border-radius: 5px;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+
+.modal-box{
+  top: 40%;
+  opacity: 0;
+  visibility: hidden;
+  background: black;
+  height: auto;
+  width: 480px;
+  padding: 18px 10px;
+  border-radius: 5px;
+  box-shadow: 5px 5px 30px rgba(0,0,0,.2);
+}
+
+.start-btn.show-modal{
+  opacity: 0;
+  visibility: hidden;
+}
+.modal-box.show-modal{
+  top: 50%;
+  opacity: 1;
+  visibility: visible;
+  transition: .4s;
+}
+.modal-box .fa-times{
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: white;
+  height: 40px;
+  width: 40px;
+  line-height: 40px;
+  margin: 10px;
+
+  color: black;
+  font-size: 18px;
+  border-radius: 100%;
+  text-align: center;
+  cursor: pointer;
+}
+.fa-times:hover{
+  font-size: 22px;
+}
+
+
+.form_container{
+  background: #2c363f;
+  padding: 30px;
+  margin-top: 20px;
+  border-radius: 3px;
+}
+
+.form_container .form_item{
+  margin-bottom: 25px;
+}
+
+.form_container .form_wrap.form_grp{
+  display: flex;
+}
+
+.form_container .form_wrap.form_grp .form_item{
+  width: 50%;
+}
+
+.form_container .form_wrap.form_grp .form_item:first-child{
+  margin-right: 10%;
+}
+
+.form_container .form_item label{
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form_container .form_item input,
+.form_container .form_item select{
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #dadce0;
+  border-radius: 3px;
+}
+ 
+.form_container .btn input[type="submit"]{
+  background: orange;
+  padding: 10px;
+  width: 100%;
+  border-radius: 3px;
+  cursor: pointer;
+  color:white;
+}
+
+
     </style>
 </head>
 <body>
@@ -179,6 +293,7 @@
         </nav>
       </header>
 
+
     <div class="wrapper">
         <div class="bg"></div>
         <div class="mainbody container_12">
@@ -190,8 +305,6 @@
             </div>
             <div class="blender grid_4 ">
                 <img class="imageblender" src="images/blender.png" alt="image of blender" width="300" height="500">
-                <button class="Registerbutton">Register</button>
-                <button class="Loginbutton">Login</button>
                 <img class="imageface" src="images/strawberry.jpeg" alt="face" width="50" height="50">
             </div>
             <div class="interests grid_4 omega">
@@ -201,6 +314,68 @@
             </div>
         </div>
     </div>
+
+<div class="start-btn">
+       <a href="#">Registration</a>
+     	</div>
+
+ <div class="center modal-box">
+
+         <div class="fas fa-times"></div>
+
+
+
+  <div class="form_container">
+    <form name="form">
+      <div class="form_wrap form_grp">
+          <div class="form_item">
+              <label>First Name</label>
+              <input type="text">
+
+          </div>
+          <div class="form_item">
+              <label>Last Name</label>
+              <input type="text">
+
+          </div>
+      </div>
+      <div class="form_wrap">
+          <div class="form_item">
+              <label>Email Address</label>
+              <input type="text">
+
+          </div>
+      </div>
+      <div class="form_wrap form_grp">
+          <div class="form_item">
+              <label>Password</label>
+              <input type="password">
+          </div>
+          <div class="form_item">
+              <label>Confirm Password</label>
+              <input type="password">
+          </div>
+      </div>
+      <div class="btn">
+        <input type="submit" value="Start">
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+         $(document).ready(function(){
+           $('.start-btn').click(function(){
+             $('.modal-box').toggleClass("show-modal");
+             $('.start-btn').toggleClass("show-modal");
+           });
+           $('.fa-times').click(function(){
+             $('.modal-box').toggleClass("show-modal");
+             $('.start-btn').toggleClass("show-modal");
+           });
+         });
+      </script>
+
     <footer class="footer">
         <p>&copy; 2023 MingleBlendr | contact@mingleblendr.com</p>
     </footer>
